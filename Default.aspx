@@ -29,9 +29,6 @@
         	<p class="text-center">
 	            <asp:GridView ID="dgridShowVersions" runat="server" CellPadding="4" ForeColor="#333333" HorizontalAlign="Center">
 	                <AlternatingRowStyle BackColor="White" />
-	                <Columns>
-	                    <asp:CommandField SelectImageUrl="~/Images/checkmark.png" ShowSelectButton="True" />
-	                </Columns>
 	                <EditRowStyle BackColor="#7C6F57" />
 	                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
 	                <HeaderStyle BackColor="#1C4A37" Font-Bold="True" ForeColor="White" />
