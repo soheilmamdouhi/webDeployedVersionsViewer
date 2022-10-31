@@ -4,38 +4,46 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h2>Servers</h2>
-            <p>
-                <asp:GridView ID="dgridShowData" runat="server" CellPadding="4" ForeColor="#333333" OnSelectedIndexChanged="dgridShowData_SelectedIndexChanged">
-                    <AlternatingRowStyle BackColor="White" />
-                    <Columns>
-                        <asp:CommandField SelectImageUrl="~/Images/checkmark.png" ShowSelectButton="True" />
-                    </Columns>
-                    <EditRowStyle BackColor="#2461BF" />
-                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" />
-                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                </asp:GridView>
-                <asp:Label ID="lblProjectName" runat="server" Visible="False"></asp:Label>
-            </p>
-            <p>
-                <asp:GridView ID="dgridShowVersions" runat="server" CellPadding="4" ForeColor="#333333">
-                    <AlternatingRowStyle BackColor="White" />
-                    <Columns>
-                        <asp:CommandField SelectImageUrl="~/Images/checkmark.png" ShowSelectButton="True" />
-                    </Columns>
-                    <EditRowStyle BackColor="#2461BF" />
-                    <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                    <RowStyle BackColor="#EFF3FB" />
-                    <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                </asp:GridView>
+        	<h2 class="text-center">Servers</h2>
+        	<p class="text-center">
+	            <asp:GridView ID="dgridShowData" runat="server" CellPadding="4" ForeColor="#333333" OnSelectedIndexChanged="dgridShowData_SelectedIndexChanged" HorizontalAlign="Center">
+	                <AlternatingRowStyle BackColor="White" />
+	                <Columns>
+	                    <asp:CommandField SelectImageUrl="~/Images/checkmark.png" ShowSelectButton="True" />
+	                </Columns>
+	                <EditRowStyle BackColor="#7C6F57" />
+	                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+	                <HeaderStyle BackColor="#1C4A37" Font-Bold="True" ForeColor="White" />
+	                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+	                <RowStyle BackColor="#D8F1E7" />
+	                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+	                <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                    <SortedAscendingHeaderStyle BackColor="#246B61" />
+                    <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                    <SortedDescendingHeaderStyle BackColor="#15524A" />
+	            </asp:GridView>
             </p>
         </div>
         <div class="col-md-6">
+        	<h2 class="text-center">Applications and Libraries versions</h2>
+        	<p class="text-center">
+	            <asp:GridView ID="dgridShowVersions" runat="server" CellPadding="4" ForeColor="#333333" HorizontalAlign="Center">
+	                <AlternatingRowStyle BackColor="White" />
+	                <Columns>
+	                    <asp:CommandField SelectImageUrl="~/Images/checkmark.png" ShowSelectButton="True" />
+	                </Columns>
+	                <EditRowStyle BackColor="#7C6F57" />
+	                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+	                <HeaderStyle BackColor="#1C4A37" Font-Bold="True" ForeColor="White" />
+	                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+	                <RowStyle BackColor="#D8F1E7" />
+	                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+	                <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                    <SortedAscendingHeaderStyle BackColor="#246B61" />
+                    <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                    <SortedDescendingHeaderStyle BackColor="#15524A" />
+	            </asp:GridView>
+            </p>
         </div>
     </div>
 </asp:Content>

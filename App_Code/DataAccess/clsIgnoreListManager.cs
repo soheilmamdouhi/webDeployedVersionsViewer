@@ -26,4 +26,30 @@ public class clsIgnoreListManager
 
         return objDBMS.ExecuteSelectSQL(strSQL);
     }
+
+    public static Boolean isInIgnoreList(String strName)
+    {
+        try
+        {
+            String strSQL = "EXEC dbo.xp_IgnoreListisInIgnoreList '" + strName + "';";
+
+            clsDBMS objDBMS = new clsDBMS();
+            DataTable objLoginStatus = new DataTable();
+
+            objLoginStatus = objDBMS.ExecuteSelectSQL(strSQL);
+
+            if (objLoginStatus.Rows[0][0].ToString() != "0")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(clsUtilities.GetErr(ex.Message.ToString()));
+        }
+    }
 }

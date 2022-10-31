@@ -450,7 +450,7 @@ cite {
 }
 
 .text-left {
-  text-align: left;
+  text-align: center;
 }
 
 .text-right {
@@ -517,6 +517,7 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+    text-align: center;
 }
 
 h3,
@@ -1407,6 +1408,7 @@ pre code {
 table {
   max-width: 100%;
   background-color: transparent;
+    text-align: center;
 }
 
 th {

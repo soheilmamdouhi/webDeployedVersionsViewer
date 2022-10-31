@@ -8,6 +8,7 @@ using System.Data;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
+using System.Collections;
 
 public partial class _Default : Page
 {
@@ -28,9 +29,14 @@ public partial class _Default : Page
     protected void dgridShowData_SelectedIndexChanged(object sender, EventArgs e)
     {
         DataTable objDataTable = new DataTable();
+        Dictionary<string, string> dictAppsAndVersions = new Dictionary<string, string>();
         String strCommandToExecute = "";
         String strOutputFileName = Guid.NewGuid().ToString() + ".tmp";
         String strOutputFileContent;
+        String strName;
+        String strVersion;
+        String strTemp;
+        
         objDataTable = clsServersManager.SelectServersByID(dgridShowData.SelectedRow.Cells[1].Text);
 
         stringArr = objDataTable.Rows[0].ItemArray.Select(arrServer => arrServer.ToString()).ToArray();
@@ -51,48 +57,58 @@ public partial class _Default : Page
         strOutputFileContent = File.ReadAllText(@"E:\Weblogic\" + strOutputFileName);
         strOutputFileContent = strOutputFileContent.Remove(0, strOutputFileContent.IndexOf("["));
 
-        string[] splitted = strOutputFileContent.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
         File.Delete(@"E:\Weblogic\" + strOutputFileName);
+
+        string[] arrDeployedAppLib = strOutputFileContent.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+        int intLength = arrDeployedAppLib.Length;
+
+        //dictAppsAndVersions.Add("Application or Library name", "Version");
+
+        for (int intCounter = 0; intCounter < intLength; intCounter++)
+        {
+            strTemp = arrDeployedAppLib[intCounter];
+
+            strTemp = strTemp.Remove(0, 43);
+
+            //strTemp = strTemp.Split('=')[1];
+            if (strTemp.Contains('#'))
+            {
+                //isVersioned = True
+                if (strTemp.Contains('@'))
+                {
+                    //isLibrary = True
+                    //isApplication = False
+                    strName = strTemp.Split('#')[0];
+                    strTemp = strTemp.Remove(0, strTemp.IndexOf('#') + 1);
+                    strVersion = strTemp.Split('@')[0];
+                }
+                else
+                {
+                    //isLibrary = False
+                    //isApplication = True
+                    strName = strTemp.Split('#')[0];
+                    strTemp = strTemp.Remove(0, strTemp.IndexOf('#') + 1);
+                    strVersion = strTemp.Split(',')[0];
+                }
+            }
+            else
+            {
+                //isVersioned = False
+                strName = strTemp.Split(',')[0];
+                strVersion = "";
+            }
+
+            if (!clsIgnoreListManager.isInIgnoreList(strName))
+            {
+                dictAppsAndVersions.Add(strName, strVersion);
+            }
+        }
+
+        dgridShowVersions.DataSource = dictAppsAndVersions;
+        dgridShowVersions.DataBind();
+
+        //dgridShowVersions.Columns[0].HeaderText = "Application or Library name";
+        //dgridShowVersions.Columns[1].HeaderText = "Version";
     }
-
-
-
-
-
-
-
-
-
-
-    //DataTable objDataTable = new DataTable();
-
-    //objDataTable = clsServersDataManager.SelectServer(dgridShowData.SelectedRow.Cells[1].Text);
-
-    //    stringArr = objDataTable.Rows[0].ItemArray.Select(arrServer => arrServer.ToString()).ToArray();
-
-    //    using (var ssh = new SshClient(stringArr[2], stringArr[5], stringArr[6]))
-    //    {
-    //        ssh.Connect();
-
-    //        lblTemp.Text = ssh.CreateCommand("wc -l " + stringArr[3] + " | awk '{print $1}'").Execute();
-
-    //        ssh.Disconnect();
-    //    }
-
-    //    lblIDData.Text = dgridShowData.SelectedRow.Cells[1].Text;
-    //    lblServerNameData.Text = dgridShowData.SelectedRow.Cells[2].Text;
-    //    lblIPAddressData.Text = dgridShowData.SelectedRow.Cells[3].Text;
-
-    //    btnRead.Enabled = true;
-    //    btnDownloadFull.Enabled = true;
-    //    btnDownloadLog.Enabled = false;
-    //    lblStatus.Text = "Set";
-    //    lblStatus.ForeColor = System.Drawing.Color.Green;
-
-    //    lblMessageData01.Text = "";
-    //    lblMessageData02.Text = "";
-    //    txtOutput.Text = "";
-
-
 }
