@@ -13,10 +13,10 @@ using System.Net;
 
 public partial class _Default : Page
 {
-    public String strWeblogic11gJarPath = @"C:\inetpub\DVV\Weblogic11g\wlserver_10.3\server\lib\weblogic.jar";
-    public String strWeblogic12cJarPath = @"C:\inetpub\DVV\Weblogic12c\wlserver\server\lib\weblogic.jar";
-    public String strJythonFilespath = @"C:\inetpub\DVV\RetriveAppsVersions.py";
-    public String strTempFilePath = @"d:\Temp\";
+    public String strWeblogic11gJarPath = @"E:\Weblogic\Weblogic11g\wlserver_10.3\server\lib\weblogic.jar";
+    public String strWeblogic12cJarPath = @"E:\Weblogic\Weblogic12c\wlserver\server\lib\weblogic.jar";
+    public String strJythonFilespath = @"E:\Weblogic\RetriveAppsVersions.py";
+    public String strTempFilePath = @"E:\Weblogic\";
     public String[] stringArr = new String[5];
 
     protected void Page_Load(object sender, EventArgs e)
@@ -54,14 +54,12 @@ public partial class _Default : Page
         if (stringArr[6] == "11g")
         {
             strCommandToExecute = "/C java -classpath " + strWeblogic11gJarPath + " weblogic.WLST " + strJythonFilespath + " " + stringArr[4] + " " + stringArr[5] + " t3://" + stringArr[2] + ":" + stringArr[3] + " > " + strTempFilePath + strOutputFileName;
-            //File.AppendAllText(strTempFilePath + strOutputFileName + ".txt", strCommandToExecute);
             Process.Start("cmd.exe", strCommandToExecute);
 
         }
         else
         {
             strCommandToExecute = "/C java -classpath " + strWeblogic12cJarPath + " weblogic.WLST " + strJythonFilespath + " " + stringArr[4] + " " + stringArr[5] + " t3://" + stringArr[2] + ":" + stringArr[3] + " > " + strTempFilePath + strOutputFileName;
-            //File.AppendAllText(strTempFilePath + strOutputFileName + ".txt", strCommandToExecute);
             Process.Start("cmd.exe", strCommandToExecute);
         }
 
@@ -117,5 +115,14 @@ public partial class _Default : Page
 
         dgridShowVersions.DataSource = dictAppsAndVersions;
         dgridShowVersions.DataBind();
+    }
+
+    protected void dgridShowVersions_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.Header)
+        {
+            e.Row.Cells[0].Text = "Application or Library name";
+            e.Row.Cells[1].Text = "Version";
+        }
     }
 }

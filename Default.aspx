@@ -13,7 +13,7 @@
 	                </Columns>
 	                <EditRowStyle BackColor="#7C6F57" />
 	                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-	                <HeaderStyle BackColor="#1C4A37" Font-Bold="True" ForeColor="White" />
+	                <HeaderStyle BackColor="#1C4A37" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
 	                <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
 	                <RowStyle BackColor="#D8F1E7" />
 	                <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
@@ -27,7 +27,7 @@
         <div class="col-md-6">
         	<h2 class="text-center">Applications and Libraries versions</h2>
         	<p class="text-center">
-	            <asp:GridView ID="dgridShowVersions" runat="server" CellPadding="4" ForeColor="#333333" HorizontalAlign="Center">
+	            <asp:GridView ID="dgridShowVersions" runat="server" CellPadding="4" ForeColor="#333333" HorizontalAlign="Center" OnRowDataBound="dgridShowVersions_RowDataBound">
 	                <AlternatingRowStyle BackColor="White" />
 	                <EditRowStyle BackColor="#7C6F57" />
 	                <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
